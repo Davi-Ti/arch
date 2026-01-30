@@ -1,0 +1,138 @@
+/* --- Paleta de Cores Catppuccin Macchiato --- */
+@define-color rosewater #f4dbd6;
+@define-color flamingo #f0c6c6;
+@define-color pink #f5bde6;
+@define-color mauve #c6a0f6;
+@define-color red #ed8796;
+@define-color maroon #ee99a0;
+@define-color peach #f5a97f;
+@define-color yellow #eed49f;
+@define-color green #a6da95;
+@define-color teal #8bd5ca;
+@define-color sky #91d7e3;
+@define-color sapphire #7dc4e4;
+@define-color blue #8aadf4;
+@define-color lavender #b7bdf8;
+@define-color text #cad3f5;
+@define-color subtext1 #b8c0e0;
+@define-color subtext0 #a5adcb;
+@define-color overlay2 #939ab7;
+@define-color overlay1 #8087a2;
+@define-color overlay0 #6e738d;
+@define-color surface2 #5b6078;
+@define-color surface1 #494d64;
+@define-color surface0 #363a4f;
+@define-color base #24273a;
+@define-color mantle #1e2030;
+@define-color crust #181926;
+
+/* --- Configurações Globais --- */
+* {
+  font-family: "JetBrains Mono Nerd", monospace;
+  border: none;
+  min-height: 0;
+}
+
+window#waybar {
+  background-color: alpha(@base, 0.75);
+  border-radius: 0;
+  color: @sapphire;
+  padding: 2px 12px;
+  transition: 0.3s all;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+  padding: 0 1rem;
+  color: @sapphire;
+  border: none;
+}
+
+.modules-center {
+  padding: 2px;
+}
+
+/* --- Módulos da Esquerda --- */
+#custom-icon {
+  font-size: 15px;
+  padding-right: 5px;
+}
+
+#window {
+  font-weight: bold;
+  color: @sky;
+  transition: all 0.3s ease;
+}
+
+/* --- Workspaces --- */
+#workspaces {
+  font-weight: bold;
+  font-size: 12px;
+  border: none;
+}
+
+#workspaces button {
+  color: @sapphire;
+  border-radius: 0;
+  transition: 0.2s ease-out;
+  border-bottom: 2px solid transparent;
+}
+
+#workspaces button.urgent {
+  border-bottom: 2px solid @red;
+}
+
+#workspaces button.active {
+  border-bottom: 2px solid @yellow;
+  color: @yellow;
+}
+
+/* --- Controles de Mídia (Botões Dinâmicos) --- */
+#custom-prev, 
+#custom-playpause, 
+#custom-next {
+    color: @mauve;
+    padding: 0 6px;
+    font-size: 16px;
+    margin: 0 2px;
+}
+
+#custom-playpause {
+    color: @blue;
+    font-size: 18px; 
+}
+
+#custom-media {
+    color: @text;
+    padding: 0 10px;
+    margin: 0 4px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* --- Áudio (Speaker) --- */
+#pulseaudio {
+    color: @yellow;
+    padding: 0 10px;
+    margin-left: 5px;
+}
+
+#pulseaudio.muted {
+    color: @red;
+}
+
+/* --- Tray e Relógio --- */
+#tray {
+  color: @sapphire;
+}
+
+#clock {
+  transition: all 0.3s ease;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+#clock:hover {
+  color: @yellow;
+}
