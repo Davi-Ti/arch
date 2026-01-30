@@ -1,0 +1,124 @@
+{
+  "layer": "top",
+  "position": "top",
+  "reload_style_on_change": true,
+  "spacing": 10,
+  "margin-top": 0,
+  "margin-left": 0,
+  "margin-right": 0,
+  "margin-bottom": 1,
+
+  // Ordem dos módulos
+  "modules-left": ["custom/icon", "hyprland/window","custom/media"],
+  "modules-center": ["hyprland/workspaces"],
+  "modules-right": [
+    "custom/prev",
+    "custom/playpause",
+    "custom/next",
+    "pulseaudio",
+    "tray",
+    "clock"
+  ],
+
+  // Módulos da Esquerda
+  "custom/icon": {
+    "format": ""
+  },
+
+  "hyprland/window": {
+    "separate-outputs": true,
+    "format": "{class}",
+    "rewrite": {
+      "": "Kel'thuzad",
+      "kitty": "Kel'thuzad",
+      "vesktop": "Discord",
+      "zen": "Browser"
+    }
+  },
+
+  // Módulos do Centro
+  "hyprland/workspaces": {
+    "disable-scroll": true,
+    "on-click": "activate",
+    "format": "{icon}",
+    "format-icons": {
+      "1": "i", "2": "ii", "3": "iii", "4": "iv", "5": "v",
+      "6": "i", "7": "ii", "8": "iii", "9": "iv", "10": "v"
+    }
+  },
+
+  // Módulos da Direita (Controle de Mídia)
+  "custom/prev": {
+    "format": "󰒮",
+    "return-type": "json",
+    "exec": "playerctl -a metadata --format '{\"alt\": \"{{status}}\"}' --follow",
+    "on-click": "playerctl previous",
+    "tooltip": false
+  },
+
+  "custom/playpause": {
+    "format": "{icon}",
+    "return-type": "json",
+    "exec": "playerctl -a metadata --format '{\"alt\": \"{{status}}\"}' --follow",
+    "format-icons": {
+      "Playing": "󰏤",
+      "Paused": "󰐊"
+    },
+    "on-click": "playerctl play-pause",
+    "tooltip": false
+  },
+
+  "custom/next": {
+    "format": "󰒭",
+    "return-type": "json",
+    "exec": "playerctl -a metadata --format '{\"alt\": \"{{status}}\"}' --follow",
+    "on-click": "playerctl next",
+    "tooltip": false
+  },
+
+  "custom/media": {
+    "format": "{text}",
+    "return-type": "json",
+    "max-length": 30,
+    "exec": "python ~/.config/waybar/mediaplayer.py 2> /dev/null",
+    "on-click": "playerctl play-pause",
+    "tooltip": false
+  },
+
+  // Som (Speaker)
+  "pulseaudio": {
+    "format": "{icon} {volume}%",
+    "format-muted": "󰝟",
+    "format-icons": {
+      "headphone": "",
+      "default": ["󰕿", "󰖀", "󰕾"]
+    },
+    "on-click": "pamixer -t",
+    // Só aumenta se o volume atual for menor que 150
+    "on-scroll-up": "if [ $(pamixer --get-volume) -lt 150 ]; then pamixer -i 5 --allow-boost; fi",
+    "on-scroll-down": "pamixer -d 5 --allow-boost",
+    "max-volume": 150,
+    "tooltip": false
+  },
+
+  "tray": {
+    "icon-size": 16,
+    "spacing": 5,
+    "show-passive-items": true
+  },
+
+  "clock": {
+    "format": "<span></span>  {:%H:%M}",
+    "interval": 1,
+    "tooltip-format": "<tt>{calendar}</tt>",
+    "calendar": {
+      "format": {
+        "today": "<span color='#eed49f'><b>{}</b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "shift_down",
+      "on-click": "shift_up"
+    }
+  }
+}
